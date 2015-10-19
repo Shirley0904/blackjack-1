@@ -1,26 +1,29 @@
-require_relative 'player'
-
-class String
-
-  def name
-    self
-  end
-
-end
+require_relative 'deck'
 
 class Game
 
-  attr_accessor :player_one, :player_two, :rounds, :wars
+end
+
+attr_accessor :player_hand, :computer_hand, :deck
 
   def initialize
-    self.player_one = Player.new
-  #  self.player_two = Player.new("Player Two")
-    self.rounds = 0
-    self.wars = 0
+    self.deck = deck.new
+    end 
+    
+    def play
+      puts "Let's play the exciting game of Blackjack! Hit [enter] to draw cards"
+      STDIN.gets
+      
+      setup_game
+      unless blackjack!(computer_hand)
+      player_turn
+      computer_turn
+    end
+    
+    determine_winner
+    ask_to_play_again
   end
-  $player_one_cards = 0
-  $player_two_cards = 0
-
+  
 
 def dealer_round
     if player_one.deck.cards.empty? != true
